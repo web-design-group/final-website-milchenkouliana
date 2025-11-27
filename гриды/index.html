@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кудряшки — услуги</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f9f9fb;
+            color: #222;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        /* Шапка */
+
+        .header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 32px;
+            padding: 20px 60px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 15px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .btn-primary {
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: none;
+            background: #ff6ea8;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Основная часть */
+
+        .main {
+            padding: 40px 60px 60px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(260px, 2fr);
+            gap: 40px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 24px;
+        }
+
+        .services-title {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        /* Карточка услуги */
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: 160px auto auto auto;
+            padding-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-name {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 18px 0;
+        }
+
+        .service-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff6ea8;
+            padding: 4px 18px 0;
+        }
+
+        .service-label {
+            padding: 4px 18px 0;
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Контакты */
+/* Контакты */
+
+.contacts {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    row-gap: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    align-self: start;
+}
+
+.contacts-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.contacts-subtitle {
+    font-size: 13px;
+    color: #888;
+}
+
+.contacts-list {
+    display: grid;
+    row-gap: 16px;
+}
+
+.contacts-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 120px) 1fr;
+    column-gap: 16px;
+    align-items: baseline;
+}
+
+.contacts-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #999;
+}
+
+.contacts-value {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.contacts-value a {
+    color: #ff6ea8;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 110, 168, 0.25);
+}
+
+.contacts-value a:hover {
+    border-bottom-color: rgba(255, 110, 168, 0.7);
+}
+
+.contacts-note {
+    font-size: 13px;
+    color: #666;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 12px;
+}
+
+/* адаптив для мобильного */
+
+@media (max-width: 640px) {
+    .contacts {
+        padding: 22px 20px;
+    }
+
+    .contacts-row {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+    }
+}
+
+
+        /* Подвал */
+
+        .footer {
+            padding: 16px 60px 24px;
+            font-size: 13px;
+            color: #777;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            border-top: 1px solid #eee;
+            background: #ffffff;
+        }
+
+        /* Адаптивность */
+
+        @media (max-width: 992px) {
+            .main {
+                padding: 24px 20px 40px;
+                grid-template-columns: 1fr;
+            }
+
+            .contacts {
+                order: -1;
+            }
+
+            .footer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="logo">Кудряшки</div>
+
+        <nav class="nav">
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Магазин</a>
+            <a href="#">Контакты</a>
+        </nav>
+
+        <button class="btn-primary">записаться</button>
+    </header>
+
+    <main class="main">
+        <section class="services">
+            <h1 class="services-title">услуги</h1>
+
+            <div class="services-grid">
+
+    <article class="service-card">
+        <img class="service-img" src="img/haircut-main.jpg" alt="Стрижка">
+        <div class="service-name">Стрижка</div>
+        <div class="service-price">3000 ₽</div>
+        <div class="service-label">Базовая услуга</div>
+    </article>
+
+    <article class="service-card">
+        <img class="service-img" src="img/styling.jpg" alt="Укладка">
+        <div class="service-name">Укладка</div>
+        <div class="service-price">2500 ₽</div>
+        <div class="service-label">Дневная / вечерняя</div>
+    </article>
+
+    <article class="service-card">
+        <img class="service-img" src="img/coloring.jpg" alt="Окрашивание">
+        <div class="service-name">Окрашивание</div>
+        <div class="service-price">6000 ₽</div>
+        <div class="service-label">Однотонное / сложные техники</div>
+    </article>
+
+    <article class="service-card">
+        <img class="service-img" src="img/steam.jpg" alt="Увлажнение паром">
+        <div class="service-name">Увлажнение паром</div>
+        <div class="service-price">1500 ₽</div>
+        <div class="service-label">Процедура ухода и восстановления</div>
+    </article>
+
+    <article class="service-card">
+        <img class="service-img" src="img/bangs.jpg" alt="Стрижка чёлки">
+        <div class="service-name">Стрижка чёлки</div>
+        <div class="service-price">1000 ₽</div>
+        <div class="service-label">Коррекция формы</div>
+    </article>
+
+    <article class="service-card">
+        <img class="service-img" src="img/spa.jpg" alt="СПА для волос">
+        <div class="service-name">СПА для волос</div>
+        <div class="service-price">5500 ₽</div>
+        <div class="service-label">Комплексный уход</div>
+    </article>
+
+</div>
+
+        </section>
+
+        <aside class="contacts">
+    <div>
+        <h2 class="contacts-title">Контакты</h2>
+        <div class="contacts-subtitle">Свяжитесь с нами удобным способом</div>
+    </div>
+
+    <div class="contacts-list">
+        <div class="contacts-row">
+            <div class="contacts-label">Email</div>
+            <div class="contacts-value">
+                <a href="mailto:kudry@gmail.com">kudry@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="contacts-row">
+            <div class="contacts-label">Телефон</div>
+            <div class="contacts-value">
+                <a href="tel:+79522497703">+7 952 249 77 03</a>
+            </div>
+        </div>
+
+        <div class="contacts-row">
+            <div class="contacts-label">Адрес</div>
+            <div class="contacts-value">
+                Санкт-Петербург,<br>Садовая 46
+            </div>
+        </div>
+    </div>
+
+    <div class="contacts-note">
+        Записывайтесь онлайн или по телефону. Поможем подобрать уход именно под ваши кудри.
+    </div>
+</aside>
+
+    </main>
+
+    <footer class="footer">
+        <span>Кудряшки © 2025</span>
+        <span>Санкт-Петербург, Садовая 46</span>
+    </footer>
+</div>
+</body>
+</html>
