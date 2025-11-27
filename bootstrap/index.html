@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кудряшки — Записаться</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    >
+
+    <style>
+        body {
+            background-color: #fdf5fb;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .service-card {
+            border-radius: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .service-card.active {
+            border-color: #e75480;
+            box-shadow: 0 0 0 2px rgba(231,84,128,0.25);
+        }
+
+        .service-price {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.9rem;
+        }
+
+        .calendar-wrapper {
+            border-radius: 1rem;
+            background: #ffffff;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            padding: 1.5rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .calendar-month {
+            font-size: 0.95rem;
+        }
+
+        .calendar-nav {
+            cursor: pointer;
+            user-select: none;
+            padding: 0 0.2rem;
+        }
+
+        .calendar-table th,
+        .calendar-table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        .calendar-table td.day {
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color .15s ease, color .15s ease;
+        }
+
+        .calendar-table td.day:hover {
+            background-color: #f3e0ff;
+        }
+
+        .calendar-day-active {
+            background-color: #f8d7ff;
+            border-radius: 50%;
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .btn-main {
+            background-color: #e75480;
+            border-color: #e75480;
+        }
+
+        .btn-main:hover {
+            background-color: #d2436f;
+            border-color: #d2436f;
+        }
+
+        .summary-box {
+            font-size: 0.9rem;
+            background-color: #fff7fb;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px dashed rgba(231,84,128,0.4);
+        }
+
+        .summary-label {
+            font-weight: 600;
+        }
+
+        @media (max-width: 767.98px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">Кудряшки</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
+                <li class="nav-item"><a class="nav-link" href="#">О нас</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Услуги</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Магазин</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Основной блок -->
+<main class="py-5">
+    <div class="container">
+        <!-- Заголовок + кнопка -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <h1 class="section-title mb-3 mb-md-0">записаться</h1>
+            <button class="btn btn-main btn-lg text-uppercase">
+                записаться
+            </button>
+        </div>
+
+        <div class="row g-4">
+            <!-- Левая колонка: выбор услуги и мастера -->
+            <div class="col-lg-6">
+                <!-- Выбор услуги -->
+                <div class="mb-4">
+                    <h5 class="mb-3">Выберите услугу</h5>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="Увлажнение паром"
+                                 data-service-price="1500 ₽">
+                                <div class="fw-semibold mb-1">Увлажнение паром</div>
+                                <div class="service-price">1500 ₽</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="Стрижка"
+                                 data-service-price="3000 ₽">
+                                <div class="fw-semibold mb-1">Стрижка</div>
+                                <div class="service-price">3000 ₽</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="Окрашивание"
+                                 data-service-price="6000 ₽">
+                                <div class="fw-semibold mb-1">Окрашивание</div>
+                                <div class="service-price">6000 ₽</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="Стрижка чёлки"
+                                 data-service-price="1000 ₽">
+                                <div class="fw-semibold mb-1">Стрижка чёлки</div>
+                                <div class="service-price">1000 ₽</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="СПА для волос"
+                                 data-service-price="5500 ₽">
+                                <div class="fw-semibold mb-1">СПА для волос</div>
+                                <div class="service-price">5500 ₽</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 service-card h-100"
+                                 data-service-name="Укладка"
+                                 data-service-price="2500 ₽">
+                                <div class="fw-semibold mb-1">Укладка</div>
+                                <div class="service-price">2500 ₽</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Выбор мастера -->
+                <div class="mb-4">
+                    <h5 class="mb-3">Выберите мастера</h5>
+                    <div class="btn-group w-100 flex-wrap" role="group" aria-label="Выбор мастера">
+                        <input type="radio" class="btn-check" name="master" id="master-maria"
+                               autocomplete="off" value="Мария" checked>
+                        <label class="btn btn-outline-secondary" for="master-maria">Мария</label>
+
+                        <input type="radio" class="btn-check" name="master" id="master-diana"
+                               autocomplete="off" value="Диана">
+                        <label class="btn btn-outline-secondary" for="master-diana">Диана</label>
+
+                        <input type="radio" class="btn-check" name="master" id="master-pavel"
+                               autocomplete="off" value="Павел">
+                        <label class="btn btn-outline-secondary" for="master-pavel">Павел</label>
+
+                        <input type="radio" class="btn-check" name="master" id="master-ivan"
+                               autocomplete="off" value="Иван">
+                        <label class="btn btn-outline-secondary" for="master-ivan">Иван</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая колонка: календарь + форма -->
+            <div class="col-lg-6">
+                <!-- Календарь -->
+                <div class="calendar-wrapper mb-4">
+                    <div class="calendar-header mb-3">
+                        <span class="calendar-nav" id="prevMonth">&lt;</span>
+                        <div class="calendar-month" id="calendarMonthLabel">
+                            Октябрь 2025
+                        </div>
+                        <span class="calendar-nav" id="nextMonth">&gt;</span>
+                    </div>
+                    <table class="table table-borderless calendar-table mb-0">
+                        <thead>
+                        <tr>
+                            <th>Пн</th>
+                            <th>Вт</th>
+                            <th>Ср</th>
+                            <th>Чт</th>
+                            <th>Пт</th>
+                            <th>Сб</th>
+                            <th>Вс</th>
+                        </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                        <!-- Ячейки будут генерироваться скриптом -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Форма записи -->
+                <form id="bookingForm">
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="+7 952 249 77 03" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="name" placeholder="Имя" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bonus" class="form-label">Номер бонусной карты, если есть</label>
+                        <input type="text" class="form-control" id="bonus" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="kudry@gmail.com">
+                    </div>
+
+                    <!-- Краткое резюме выбора -->
+                    <div class="summary-box mb-3" id="summaryBox">
+                        <div class="summary-label mb-1">Ваш выбор:</div>
+                        <div id="summaryText">
+                            Услуга не выбрана, дата не выбрана, мастер: Мария.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-main btn-lg w-100 text-uppercase">
+                        записаться
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Подвал -->
+<footer class="py-4 bg-white mt-5">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div>
+            <strong>Кудряшки © 2025</strong><br>
+            Санкт-Петербург, Садовая 46
+        </div>
+        <div class="text-end">
+            <div>E-mail: <a href="mailto:kudry@gmail.com">kudry@gmail.com</a></div>
+            <div>Телефон: <a href="tel:+79522497703">+7 952 249 77 03</a></div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+></script>
+
+<script>
+    // Простой "datepicker" на чистом JS
+    const monthNames = [
+        "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    ];
+
+    let currentDate = new Date();
+    let selectedDate = null;
+
+    const calendarBody = document.getElementById("calendarBody");
+    const calendarMonthLabel = document.getElementById("calendarMonthLabel");
+    const prevMonthBtn = document.getElementById("prevMonth");
+    const nextMonthBtn = document.getElementById("nextMonth");
+
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+
+        calendarMonthLabel.textContent = monthNames[month] + " " + year;
+
+        // 1 число месяца
+        const firstDay = new Date(year, month, 1);
+        // День недели (делаем так, чтобы понедельник был первым столбцом)
+        let startDay = firstDay.getDay(); // 0 - воскресенье, 1 - понедельник, ...
+        if (startDay === 0) startDay = 7;
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        calendarBody.innerHTML = "";
+        let row = document.createElement("tr");
+        let cellCount = 0;
+
+        // Пустые ячейки до первого дня
+        for (let i = 1; i < startDay; i++) {
+            const cell = document.createElement("td");
+            row.appendChild(cell);
+            cellCount++;
+        }
+
+        // Дни месяца
+        for (let day = 1; day <= daysInMonth; day++) {
+            if (cellCount === 7) {
+                calendarBody.appendChild(row);
+                row = document.createElement("tr");
+                cellCount = 0;
+            }
+
+            const cell = document.createElement("td");
+            cell.textContent = day;
+            cell.classList.add("day");
+
+            const cellDate = new Date(year, month, day);
+
+            // Подсветка выбранной даты
+            if (selectedDate &&
+                cellDate.getFullYear() === selectedDate.getFullYear() &&
+                cellDate.getMonth() === selectedDate.getMonth() &&
+                cellDate.getDate() === selectedDate.getDate()
+            ) {
+                cell.classList.add("calendar-day-active");
+            }
+
+            cell.dataset.date = cellDate.toISOString();
+            cell.addEventListener("click", () => {
+                selectedDate = cellDate;
+                updateSummary();
+                renderCalendar(currentDate); // перерисовать для обновления подсветки
+            });
+
+            row.appendChild(cell);
+            cellCount++;
+        }
+
+        // Добавляем последнюю строку
+        if (cellCount > 0) {
+            calendarBody.appendChild(row);
+        }
+    }
+
+    prevMonthBtn.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+
+    nextMonthBtn.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+
+    // Выбор услуги
+    const serviceCards = document.querySelectorAll(".service-card");
+    let selectedServiceName = null;
+    let selectedServicePrice = null;
+
+    serviceCards.forEach(card => {
+        card.addEventListener("click", () => {
+            serviceCards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+
+            selectedServiceName = card.dataset.serviceName;
+            selectedServicePrice = card.dataset.servicePrice;
+            updateSummary();
+        });
+    });
+
+    // Выбор мастера
+    const masterInputs = document.querySelectorAll("input[name='master']");
+
+    function getSelectedMaster() {
+        const checked = document.querySelector("input[name='master']:checked");
+        return checked ? checked.value : null;
+    }
+
+    masterInputs.forEach(input => {
+        input.addEventListener("change", updateSummary);
+    });
+
+    // Обновление резюме
+    const summaryText = document.getElementById("summaryText");
+
+    function formatDateRu(date) {
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
+    function updateSummary() {
+        const master = getSelectedMaster() || "не выбран";
+        const service = selectedServiceName || "не выбрана";
+        const price = selectedServicePrice ? ` (${selectedServicePrice})` : "";
+        const dateText = selectedDate ? formatDateRu(selectedDate) : "не выбрана";
+
+        summaryText.textContent =
+            `Услуга: ${service}${price}, дата: ${dateText}, мастер: ${master}.`;
+    }
+
+    // Обработка отправки формы (пока просто предотвращаем перезагрузку)
+    const bookingForm = document.getElementById("bookingForm");
+    bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Здесь можно добавить AJAX / отправку данных
+        alert("Форма отправлена (для реального проекта здесь будет обработка данных).");
+    });
+
+    // Инициализация
+    renderCalendar(currentDate);
+    updateSummary();
+</script>
+
+</body>
+</html>
