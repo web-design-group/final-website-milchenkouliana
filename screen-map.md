@@ -1,6 +1,6 @@
 ````markdown
 ```mermaid
-flowchart LR
+graph TD
 
 A[Открыть приложение]
 
