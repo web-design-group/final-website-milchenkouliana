@@ -1,3 +1,5 @@
+````markdown
+```mermaid
 flowchart LR
 
 A[Открыть приложение]
