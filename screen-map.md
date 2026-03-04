@@ -1,6 +1,6 @@
-````markdown
 ```mermaid
 graph TD
+```
 
 A[Открыть приложение]
 
